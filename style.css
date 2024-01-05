@@ -1,86 +1,286 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: 'Open Sans', sans-serif;
-  background: #222;
-  background-image: url('https://source.unsplash.com/1600x900/?landscape');
-  font-size: 120%;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
 }
 
-.card {
-  background: #000000d0;
-  color: white;
-  padding: 2em;
-  border-radius: 30px;
-  width: 100%;
-  max-width: 420px;
-  margin: 1em;
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* align-items özelliğini flex-start olarak değiştirin */
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #222;
+    background-image: url('https://images.unsplash.com/photo-1621274403997-37aace184f49?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1');
+    background-repeat: no-repeat;
+    background-size:cover;
+    overflow: hidden;
+    font-size: 120%;
+    
+}
+
+#weatherContainer{
+    position: relative; /* position özelliğini relative olarak değiştirin */
+    margin-top: auto; /* margin-top özelliğini auto olarak ayarlayın */
+    margin-bottom: 0; /* margin-bottom özelliğini 0 olarak ayarlayın */
+    left: 0;
+    right: 0;
+    height: 300px;
+    width: 1300px;
+    border: 5px solid rgba(97, 95, 95, 0.829);    
+    border-radius: 10px;
+    color:white;
+}
+
+#iconsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding:15px;
+    padding-right: 40px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2)
+}
+
+.icons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+    width: 190px;
+    margin: 20px;
+    border: 5px solid rgb(48, 47, 47);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.image{
+    height: 140px;
+    width: 100%;
+}
+
+.imgClass{
+    height: 140px;
+    width: 100%;
+}
+
+.weather{
+    margin: 5px;
+    /*  background-color: rgb(106, 215, 255); */
+    font-weight: bold;
+    padding: 5px 15px;
+    background: #4d4d57;
+    border-radius: 50px;
+    text-align: center;
+    
+}
+
+.valuesContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.minValues, .maxValues {
+    /* Diğer stilleriniz aynı kalırken, display özelliğini kaldırın */
+    text-align: center;
+    border-radius: 5px;
+    height: 25px;
+    width: 85px;
+    margin: 0;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+.container{
+    padding: 20px 70px;
+    color:#fff;
+}
+
+.date-container {
+    font-weight: 100;
+}
+
+.date-container .time {
+    font-size: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.date-container .date {
+    font-size: 40px;
+    position: fixed;
+    top: 70px;
+    left: 0;
+}
+
+.date-container #am-pm{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+
+.time-zone {
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.country {
+    position: fixed;
+    top: 30px;
+    right: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#cityInput {
+    border: none;
+    outline: none;
+    padding: 0.4em 1em;
+    border-radius: 24px;
+    background: #7c7c7c2b;
+    color: white;
+    font-family: inherit;
+    font-size: 105%;
+    width: calc(100% - 50px); 
+}
+
+#cityName {
+    border: none;
+    outline: none;
+    padding: 0.4em 1em;
+    border-radius: 24px;
+    background: #7c7c7c2b;
+    color: white;
+    font-family: inherit;
+    font-size: 100%;
+    width: calc(100% - 250px);
+}
+
+#inputContainer,button {
+    border: none;
+    outline: none;
+    padding: 0.4em 1em;
+    border-radius: 24px;
+    background: #7c7c7c2b;
+    color: white;
+    font-family: inherit;
+    font-size: 100%;
+    width: calc(100% - 250px);
+    
 }
 
 .search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-button {
-  margin: 0.5em;
-  border-radius: 50%;
-  border: none;
-  height: 44px;
-  width: 44px;
-  outline: none;
-  background: #7c7c7c2b;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
+
+.current-info .others{
+    display: flex;
+    flex-direction: column;
+    background: rgba(24,24,27, 0.6);
+    padding:20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    position: fixed;
+    top: 110px; /* 70px (date elementinin top değeri) + 30px (date elementinin yüksekliği) */
+    left: 0;
 }
 
-input.search-bar {
-  border: none;
-  outline: none;
-  padding: 0.4em 1em;
-  border-radius: 24px;
-  background: #7c7c7c2b;
-  color: white;
-  font-family: inherit;
-  font-size: 105%;
-  width: calc(100% - 100px);
+.current-info .others .weather-item{
+    display: flex;
+    justify-content: space-between;
 }
 
-button:hover {
-  background: #7c7c7c6b;
+
+@media only screen and (max-width:  600px) {
+    body {
+        font-size: 90%;
+    }
+
+    #weatherContainer {
+        width: 100%;
+        padding: 10px;
+        height: auto;
+    }
+
+    #iconsContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icons {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .date-container .time {
+        font-size: 40px;
+    }
+
+    .date-container .date {
+        font-size: 18px;
+    }
+
+    .time-zone {
+        font-size: 18px;
+    }
+
+    .country {
+        font-size: 14px;
+    }
+
+    #cityInput {
+        width: 90%;
+        margin: auto;
+    }
+
+    #cityName {
+        width: 90%;
+        margin: auto;
+    }
+
+    #inputContainer, button {
+        width: 90%;
+        margin: auto;
+    }
+
+    .search {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .current-info .others {
+        position: static;
+        margin: 30px 0;
+    }
 }
 
-h1.temp {
-  margin: 0;
-  margin-bottom: 0.4em;
-}
 
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.description {
-  text-transform: capitalize;
-  margin-left: 8px;
-}
-
-.weather.loading {
-  visibility: hidden;
-  max-height: 20px;
-  position: relative;
-}
-
-.weather.loading:after {
-  visibility: visible;
-  content: "Loading...";
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 20px;
-}
